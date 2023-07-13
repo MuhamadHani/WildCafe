@@ -1,0 +1,45 @@
+<div class="container flex justify-center items-center flex-wrap md:m-12 md:p-0 p-4 overflow-hidden   ">
+  <img class="rounded-3xl md:flex-1 md:shrink-0 object-cover md:h-[35rem] w-screen md:m-4   " [src]="food.imageUrl" [alt]="food.name">
+
+  <div class="details w-full flex flex-col flex-1 shrink-0 p-8 ml-4">
+    <div class="header flex justify-between ">
+      <span class="name text-4xl font-bold ">
+        {{ food.name }}
+      </span>
+      <span class="favorite bg-yellow-500 px-3 py-2 rounded-xl text-4xl  {{food.favorite? '': 'not'}}">🤍</span>
+    </div>
+    <div class="rating">
+      <star-rating [value]="food.stars" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="25px"
+        [readonly]="true">
+
+      </star-rating>
+    </div>
+
+    <div class="origins flex flex-wrap mx-0 my-4 text-sm ">
+      <span class="p-2 text-xl mt-2 mr-2 mb-2 ml-0 rounded-3xl  bg-slate-200" *ngFor="let origin of food.origins">
+        {{origin | titlecase}}
+      </span>
+    </div>
+
+    <div class="tags flex flex-wrap  ">
+      <a class="bg-green-600 py-2 px-4 my-2 mx-1 rounded-full font-semibold text-white "
+        *ngFor="let tags of food.tags" routerLink="/tag/{{tags}}">
+        {{tags}} ></a>
+    </div>
+
+    <div class="cook-time mt-4 ">
+      <span class="pt-2 pr-8 pb-2 pl-0 rounded-full text-lg">
+        Time to cook about <strong>{{food.cookTime}}</strong> Minutes
+      </span>
+    </div>
+
+    <div class="price text-2xl ml-0 mt-8 mb-8 mr-8 text-red-700 font-bold">
+      <span>
+        {{food.price | currency:"INR" }}
+      </span>
+    </div>
+
+    <button class="h-10 w-full bg-green-600 rounded-lg text-white" (click)="addToCart()">Add to Cart</button>
+
+  </div>
+</div>

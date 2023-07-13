@@ -1,0 +1,11 @@
+<div class="flex flex-wrap justify-center gap-2 " *ngIf="tags">
+  <a class="bg-green-400 text-black py-2 px-3 rounded-full font-medium hover:text-green-400 hover:bg-black"
+    *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}">
+    {{tag.name}}({{tag.count}})
+  </a>
+  <!-- <div class="cook-time">
+    <span>
+      Time to Cook About <strong> {{food.cookTime}} </strong>minutes
+    </span>
+  </div> -->
+</div>

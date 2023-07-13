@@ -1,0 +1,8 @@
+<div class="flex justify-center mt-12 mb-6  ">
+  <input class="rounded-tl-3xl  rounded-bl-3xl border-none h-12 w-80 bg-slate-200 p-5 text-lg font-medium outline-none " #s type="text" placeholder="Seach Wild Cafe Menu"
+(keyup.enter)="searched(s.value)"
+[value]="Search">
+<button class="bg-green-400 h-12 w-20 text-base rounded-tr-3xl border-none hover:cursor-pointer hover:opacity-80 hover:bg-slate-700 hover:text-green-400" (click)="searched(s.value)">Search</button>
+
+</div>
+

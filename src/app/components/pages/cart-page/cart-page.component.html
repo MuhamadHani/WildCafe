@@ -1,0 +1,55 @@
+<app-title  title="Cart Page" margin="1.5rem 0 0 2.5rem"></app-title>
+<app-not-found
+[visible]="!cart || !cart.items.length"
+notFoundMessage="Cart Page is Empty"
+resetLinkText=" Go to Homepage"
+></app-not-found>
+<div *ngIf="cart && cart.items.length " class="container flex flex-wrap justify-start  mt-2  p-6 ">
+  <ul class="flex flex-col flex-[3] justify-evenly shrink-0 border-gray-400 border-2  rounded-2xl list-none m-2 p-0">
+    <li class="flex justify-around  flex-wrap items-center    border-b-2 border-b-gray-400" *ngFor="let cartItem of cart.items">
+      <div class=" mt-6 mr-0 mb-0 ml-10">
+        <img class="w-20 h-20 rounded-full object-cover " [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name ">
+      </div>
+      <div>
+        <a class="text-green-600 hover:rounded-lg" routerLink="/food/{{cartItem.food.id}}">
+          {{cartItem.food.name}}
+        </a>
+      </div>
+      <div>
+        <select #quantitySelect [value]="cartItem.quantity"
+          (change)="changeQuantity(cartItem,quantitySelect.value)">
+          <option >1</option>
+          <option >2</option>
+          <option >3</option>
+          <option >4</option>
+
+        </select>
+      </div>
+
+<div>
+  Price:{{cartItem.price | currency:'INR' }}
+</div>
+
+<div>
+  <button class="remove-button rounded-2xl border-none p-2 text-blue-600 opacity-75 outline-none  hover:opacity-50  hover:cursor-pointer" (click)="removeFromCart(cartItem)">Remove</button>
+</div>
+
+
+
+
+    </li>
+  </ul>
+
+
+<div class="checkOut hover:opacity-90 hover:cursor-pointer">
+<div class="text-lg m-4 flex[3] flex flex-col justify-center items-start ">
+  <div class="food-count mb-6  ">{{cart.totalCount }}</div>
+  <div class="totalPrice">{{cart.totalPrice | currency:"INR"}}</div>
+
+</div>
+<div><a class="p-2 flex  text-white bg-green-500 rounded-2xl items-center  justify-center  w-[99%]" routerLink="/chechout">Proceed to Checkout</a></div>
+</div>
+
+
+
+</div>

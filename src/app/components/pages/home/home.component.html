@@ -1,0 +1,49 @@
+<app-search></app-search>
+<app-tags></app-tags>
+<app-not-found
+[visible]="!foods || !foods.length"
+resetLinkText="Reset Search"
+></app-not-found>
+<ul class="flex justify-center items-center flex-wrap list-none p-0">
+  <li *ngFor="let food of foods">
+    <a routerLink="/food/{{food.id}}">
+      <img [src]="food.imageUrl" [alt]="food.name"/>
+      <div class="content">
+        <div class="name">
+          {{food.name}}
+        </div>
+        <span class="favorite absolute top-2 right-4 text-lg {{food. favorite?'': 'not'}}">
+          🤍
+        </span>
+        <div class="stars mb-1">
+          <star-rating
+          [value]="food.stars"
+          [totalstars]="5"
+          checkedcolor="red"
+          uncheckedcolor="black"
+          size="22px"
+          [readonly]="true">
+
+          </star-rating>
+
+        </div>
+        <div class="product-item-footer flex justify-between items-start">
+          <div class="origins ">
+            <span class="rounded-full bg-slate-300 inline-block text-sm text-black mr-1 py-0 px-2 mt-1" *ngFor="let origin of food.origins">
+              {{origin | titlecase }}
+            </span>
+          </div>
+          <div class="cook-time text-sm flex-[3] text-right ">
+            <span>🕤</span>{{food.cookTime}}
+          </div>
+        </div>
+        <div class="price absolute  left-4 mt-3  text-lg ">
+          <span>
+            {{food.price | currency:'INR' }}
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </li>
+</ul>
